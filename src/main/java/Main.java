@@ -1,5 +1,5 @@
 public class Main {
     public static void main(String[] args){
-        //it's Master origin
+        //it's Main origin
     }
 }
