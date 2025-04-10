@@ -1,25 +1,25 @@
 package cars;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 
 public abstract class Car {
-    @Getter
+    private final String name;
+    private final String model;
+    private final String engine;
+    private String color;
+    private final Float weight;
     private final int year;
-    private final String name, model, engine, weight;
-    @Setter
-    private String color = "белый";
 
-    public Car(String inpName, String inpModel, String inpEngine, String inpWeight,
-               String inpColor, int inpYear){
-        this.name = inpName;
-        this.model = inpModel;
-        this.year = inpYear;
-        this.engine = inpEngine;
-        this.weight = inpWeight;
-        this.color = inpColor;
-    }
-
-    public void getInfo (){
-        System.out.println(name + " " + model + " " + year + " года. Двигатель - " + engine + ". Вес машины - "
-                + weight + " тонн. Цвет машины - " + color + ".");
+    public Car(String name, String model, String engine, Float weight,
+               String color, int year) {
+        this.name = name;
+        this.model = model;
+        this.year = year;
+        this.engine = engine;
+        this.weight = weight;
+        this.color = color;
     }
 }

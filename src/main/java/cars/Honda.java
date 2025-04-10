@@ -2,8 +2,7 @@ package cars;
 
 public class Honda extends Car {
 
-    public Honda(String inpName, String inpModel, String inpEngine, String inpWeight, String inpColor, int inpYear) {
-        super(inpName, inpModel, inpEngine, inpWeight, inpColor, inpYear);
+    public Honda(String inpModel, int inpYear ,String inpEngine, Float inpWeight, String inpColor) {
+        super("Honda", inpModel, inpEngine, inpWeight, inpColor, inpYear);
     }
-
 }
