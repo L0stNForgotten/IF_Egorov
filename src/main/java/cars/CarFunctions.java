@@ -1,4 +1,8 @@
 package cars;
+import java.util.*;
+import java.util.stream.Collectors;
+
+import
 
 public class CarFunctions {
 
@@ -23,5 +27,14 @@ public class CarFunctions {
         } else {
             System.out.println(car.getName() + " " + car.getModel() + ": Цвет машины не красный. Перекраска запрещена.");
         }
+    }
+
+    public void race(List<Car> list){
+        Random randomSpeeChanger = new Random();
+        Map<Object, Integer> speedMap = new HashMap<>();
+        for (Car car : list){
+            speedMap.put(car,((int)((225 / car.getWeight() * randomSpeeChanger.nextInt(15))*1.25)));
+        }
+        System.out.println("Самым быстрым оказалась - " + speedMap.values().);
     }
 }
