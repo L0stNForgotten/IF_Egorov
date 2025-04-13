@@ -44,7 +44,7 @@ public class CarFunctions {
         speedMap.forEach((speed, value) -> {
             Car car = (Car) value;
             i.getAndIncrement();
-            System.out.println(i + " место: " + car.getName() + " (" + speed + " км/ч)");
+            System.out.println(i + " место: " + car.getName() + " " + car.getModel() + " (" + speed + " км/ч)");
         });
     }
 }
