@@ -1,8 +1,7 @@
 package cars;
 import java.util.*;
-import java.util.stream.Collectors;
+import java.util.concurrent.atomic.AtomicInteger;
 
-import
 
 public class CarFunctions {
 
@@ -30,11 +29,22 @@ public class CarFunctions {
     }
 
     public void race(List<Car> list){
-        Random randomSpeeChanger = new Random();
-        Map<Object, Integer> speedMap = new HashMap<>();
-        for (Car car : list){
-            speedMap.put(car,((int)((225 / car.getWeight() * randomSpeeChanger.nextInt(15))*1.25)));
+        Random randomSpeedChanger = new Random();
+        Map<Integer, Object> speedMap = new TreeMap<>(Comparator.reverseOrder());
+        for (Car car : list) {
+            int  speed;
+            float changer = randomSpeedChanger.nextFloat() + randomSpeedChanger.nextInt(1) +0.55f;
+            if (changer != 0)
+                speed = (int)((225 / car.getWeight() * changer) * 1.25);
+            else speed = (int)((225 / car.getWeight()) * 1.25);
+            speedMap.put(speed, car);
         }
-        System.out.println("Самым быстрым оказалась - " + speedMap.values().);
+        System.out.println("Таблица лидеров: ");
+        AtomicInteger i = new AtomicInteger();
+        speedMap.forEach((speed, value) -> {
+            Car car = (Car) value;
+            i.getAndIncrement();
+            System.out.println(i + " место: " + car.getName() + " (" + speed + " км/ч)");
+        });
     }
 }

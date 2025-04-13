@@ -54,24 +54,24 @@ public class Main {
         CarFunctions do_ = new CarFunctions();
         System.out.println("-".repeat(20));
         System.out.println("Автопарк");
+        System.out.println("-".repeat(20));
         for (Car car : cars)
             do_.fullInfo(car);
         System.out.println("-".repeat(20));
 
 //      Цикл
-        for (int i = 0; i < cars.size(); i++) {
-            Car car = cars.get(i);
-            System.out.println("Начало цикла для " + car.getName() + " " + car.getModel() + ".");
+        System.out.println("Да будет гонка!");
+        System.out.println("-".repeat(20));
+        System.out.println("Участники гонки:");
+        System.out.println("-".repeat(20));
+        for (Car car : cars){
             do_.checkCarAge(car);
             do_.colorChanger(car);
-            System.out.println("Конец цикла для " + car.getName() + " " + car.getModel() + ".");
-            if (i < cars.size() - 1)
-                System.out.println("Начинаю новый цикл.");
-            else
-                System.out.println("Конец всех циклов");
             System.out.println("-".repeat(20));
         }
-
-//        do_.fullInfo(car1);
+        System.out.println("Гонка закончилась!");
+        System.out.println("-".repeat(20));
+        do_.race(cars);
+        System.out.println("-".repeat(20));
     }
 }
