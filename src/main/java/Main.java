@@ -3,7 +3,7 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args){
-        //it's Develop origin
+        //it's Homework 1 origin
 
         Honda car1 = new Honda(
                 "CR-Z Mugen",
