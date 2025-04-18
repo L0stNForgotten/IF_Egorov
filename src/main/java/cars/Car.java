@@ -1,10 +1,6 @@
 package cars;
-import lombok.Getter;
-import lombok.Setter;
-
-@Getter
-@Setter
-
+import lombok.Data;
+@Data
 public abstract class Car {
     private final String name;
     private final String model;
@@ -12,7 +8,6 @@ public abstract class Car {
     private String color;
     private final Float weight;
     private final int year;
-
     public Car(String name, String model, String engine, Float weight,
                String color, int year) {
         this.name = name;
