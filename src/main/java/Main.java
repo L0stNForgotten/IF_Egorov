@@ -1,7 +1,10 @@
 import cars.*;
+
 import java.util.*;
+
 public class Main {
-    public static void main(String[] args){
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
         Honda car1 = new Honda(
                 "CR-Z Mugen",
                 2012,
@@ -50,13 +53,24 @@ public class Main {
         for (Car car : cars)
             funcForCars.fullInfo(car);
         System.out.println("-".repeat(20));
+        System.out.println("Хотите узнать немного про все машины? (Y/N)");
+        String wikiOut = input.nextLine();
+        System.out.println("-".repeat(20));
+        if (wikiOut.equalsIgnoreCase("y")) {
+            funcForCars.getWikiOutForAll(cars);
+        } else if (wikiOut.equalsIgnoreCase("n")) {
+            return;
+        } else {
+            System.out.println("Неизвестная команда. Игнорирование ответа.");
+        }
+        System.out.println("-".repeat(20));
         System.out.println("Да будет гонка!");
         System.out.println("-".repeat(20));
         System.out.println("Участники гонки:");
         System.out.println("-".repeat(20));
-        for (Car car : cars){
+        for (Car car : cars) {
             funcForCars.checkCarAge(car);
-            funcForCars.colorChanger(car, "красный","зелёный");
+            funcForCars.colorChanger(car, "красный", "зелёный");
             System.out.println("-".repeat(20));
         }
         System.out.println("Гонка закончилась!");
