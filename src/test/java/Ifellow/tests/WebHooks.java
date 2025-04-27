@@ -1,9 +1,11 @@
 package Ifellow.tests;
 
-import org.junit.jupiter.api.*;
-import com.codeborne.selenide.*;
-import org.openqa.selenium.*;
-import lombok.*;
+import lombok.Getter;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.AfterEach;
+import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.Configuration;
+import org.openqa.selenium.PageLoadStrategy;
 
 @Getter
 public abstract class WebHooks {
@@ -13,7 +15,7 @@ public abstract class WebHooks {
     @BeforeEach
     public void testConfig() {
         Configuration.pageLoadStrategy = PageLoadStrategy.NORMAL.toString();
-        Configuration.timeout = 10000;
+        Configuration.timeout = 5000;
         Selenide.open("https://edujira.ifellow.ru/secure/Dashboard.jspa");
         Selenide.webdriver().driver().getWebDriver().manage().window().maximize();
     }
