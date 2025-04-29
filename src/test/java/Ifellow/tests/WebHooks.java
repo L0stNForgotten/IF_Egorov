@@ -15,7 +15,7 @@ public abstract class WebHooks {
     @BeforeEach
     public void testConfig() {
         Configuration.pageLoadStrategy = PageLoadStrategy.NORMAL.toString();
-        Configuration.timeout = 5000;
+        Configuration.timeout = 15000;
         Selenide.open("https://edujira.ifellow.ru/secure/Dashboard.jspa");
         Selenide.webdriver().driver().getWebDriver().manage().window().maximize();
     }

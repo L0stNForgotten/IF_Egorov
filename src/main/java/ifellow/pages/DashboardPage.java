@@ -2,6 +2,7 @@ package ifellow.pages;
 
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.Condition;
+import org.junit.jupiter.api.Assertions;
 
 import static com.codeborne.selenide.Selenide.$x;
 
@@ -13,9 +14,6 @@ public class DashboardPage {
     public void dashboardUse() {
         dashboardProjectIcon.shouldBe(Condition.interactable).click();
         dashboardProjects.shouldBe(Condition.interactable).click();
-    }
-
-    public boolean openProjects() {
-        return projectsSidebar.shouldBe(Condition.visible).isDisplayed();
+        Assertions.assertTrue(projectsSidebar.shouldBe(Condition.visible).isDisplayed());
     }
 }

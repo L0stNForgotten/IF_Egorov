@@ -8,6 +8,7 @@ import static com.codeborne.selenide.Selenide.$x;
 
 
 public class ProjectPage {
+    private final SelenideElement projectsTaskListButton = $x("//div[@class='aui-sidebar-body']//a[contains(@href,'/issues')]").as("Список задач");
     private final SelenideElement projectSearchFilters = $x("//button[@id='subnav-trigger']").as("Фильтр поиска");
     private final SelenideElement projectAllTasks = $x("//ul[@class='aui-list-truncate']//a[contains(text(), 'Все задачи')]").as("Фильтр 'Все задачи'");
     private final SelenideElement projectTasksCounter = $x("//div[@class='pager']//span[contains(text(), 'из')]").as("Счётчик задач");
@@ -17,18 +18,19 @@ public class ProjectPage {
     private final SelenideElement taskInputField = $x("//textarea[@name='summary']").as("Поле ввода задачи");
 
     public void projectCheckFilter() {
+        projectsTaskListButton.shouldBe(Condition.interactable).click();
         projectSearchFilters.shouldBe(Condition.interactable).click();
         projectAllTasks.shouldBe(Condition.interactable).click();
     }
 
-    public Integer projectTasksCountCheck () {
+    public Integer projectTasksCountCheck() {
         return Integer.parseInt(projectTasksCounter.shouldBe(Condition.visible).getText().split(" из ")[1]);
     }
 
-    public void projectTaskCreator (String task) {
+    public void projectTaskCreator(String task) {
         taskCreatorButton.shouldBe(Condition.interactable).click();
         taskTypeChoice.shouldBe(Condition.interactable).click();
         taskTypeError.shouldBe(Condition.interactable).click();
-        taskInputField.shouldBe(Condition.interactable).sendKeys(task,Keys.ENTER);
+        taskInputField.shouldBe(Condition.interactable).sendKeys(task, Keys.ENTER);
     }
 }

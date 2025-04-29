@@ -2,6 +2,8 @@ package ifellow.pages;
 
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.Condition;
+import org.junit.jupiter.api.Assertions;
+
 
 import static com.codeborne.selenide.Selenide.$x;
 
@@ -16,9 +18,7 @@ public class AuthorizationPage {
         authorizationLoginInput.shouldBe(Condition.visible).shouldBe(Condition.enabled).shouldBe(Condition.interactable).sendKeys(login);
         authorizationPasswordInput.shouldBe(Condition.visible).shouldBe(Condition.enabled).shouldBe(Condition.interactable).sendKeys(password);
         authorizationButton.shouldBe(Condition.interactable).click();
+        Assertions.assertTrue(dashboardProjectTab.shouldBe(Condition.visible).isDisplayed());
     }
 
-    public boolean didAuthorized() {
-        return dashboardProjectTab.shouldBe(Condition.visible).isDisplayed();
-    }
 }
