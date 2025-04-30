@@ -1,6 +1,5 @@
 package Ifellow.tests;
 
-import com.codeborne.selenide.Selenide;
 import org.junit.jupiter.api.*;
 import ifellow.pages.*;
 
@@ -10,6 +9,7 @@ public class JiraIFellowTest extends WebHooks {
     private final ProjectPage project = new ProjectPage();
     private final TaskSeleniumPage taskSelenium = new TaskSeleniumPage();
     private final BugRepoPage bugRepo = new BugRepoPage();
+    private final CloseTaskPage closeTask = new CloseTaskPage();
 
     @Test
     public void authorizationTest() {
@@ -26,10 +26,8 @@ public class JiraIFellowTest extends WebHooks {
     public void projectTest() {
         dashboardTest();
         project.projectCheckFilter();
-        Selenide.sleep(1500);
         int beforeInt = project.projectTasksCountCheck();
         project.projectTaskCreator("Test task input");
-        Selenide.sleep(1500);
         Assertions.assertEquals(beforeInt + 1, project.projectTasksCountCheck());
     }
 
@@ -44,8 +42,13 @@ public class JiraIFellowTest extends WebHooks {
 
     @Test
     public void bugRepoTest() {
-        dashboardTest();
+        projectTest();
         bugRepo.bugRepoGeneration();
-//        bugRepo.repoIssueWasMade();
+    }
+
+    @Test
+    public void closeTaskTest (){
+        bugRepoTest();
+        closeTask.closeTaskFromBugRepo();
     }
 }
