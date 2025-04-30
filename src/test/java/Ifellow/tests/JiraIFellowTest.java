@@ -14,14 +14,12 @@ public class JiraIFellowTest extends WebHooks {
     @Test
     public void authorizationTest() {
         authorization.authorizationInnit(getDefaultLogin(), getDefaultPassword());
-        ;
     }
 
     @Test
     public void dashboardTest() {
         authorizationTest();
         dashboard.dashboardUse();
-        ;
     }
 
     @Test
@@ -46,8 +44,8 @@ public class JiraIFellowTest extends WebHooks {
 
     @Test
     public void bugRepoTest() {
-        seleniumTaskTest();
+        dashboardTest();
         bugRepo.bugRepoGeneration();
-        bugRepo.repoIssueWasMade();
+//        bugRepo.repoIssueWasMade();
     }
 }

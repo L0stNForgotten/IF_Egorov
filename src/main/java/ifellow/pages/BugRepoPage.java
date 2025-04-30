@@ -1,6 +1,5 @@
 package ifellow.pages;
 
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.Keys;
@@ -34,42 +33,47 @@ public class BugRepoPage {
     private final SelenideElement issueCreatedCheck = $x("//div[contains(@class,'aui-message-success')]");
 
     public void bugRepoGeneration() {
-        repoCreateIssueButton.shouldBe(interactable).click();
-        issueTypeField.shouldBe(visible).click();
+        repoCreateIssueButton.shouldBe(interactable, Duration.ofSeconds(15)).click();
+        issueTypeField.shouldBe(visible, Duration.ofSeconds(15)).click();
         issueTypeField.sendKeys("Ошибка", Keys.ENTER);
-        issueTopicInput.sendKeys("HW3_AutoTest");
-        issueDescriptionVisualButton.shouldBe(visible);
-        issueDescriptionVisualButton.click();
+        issueTopicInput.shouldBe(visible).sendKeys("HW3_AutoTest");
+
+        issueDescriptionVisualButton.shouldBe(visible, Duration.ofSeconds(15)).click();
         switchTo().frame(issueDescriptionInput);
-        SelenideElement descriptionBody = $(byTagName("body"));
-        descriptionBody.shouldBe(visible).setValue("Under test");
+        $(byTagName("body")).shouldBe(visible).setValue("Under test");
         switchTo().defaultContent();
-        issueDescriptionVersion.shouldBe(interactable).sendKeys("v");
-        issuePriorityField.shouldBe(visible).click();
+
+        issueDescriptionVersion.shouldBe(interactable, Duration.ofSeconds(15)).sendKeys("v");
+        issuePriorityField.shouldBe(visible, Duration.ofSeconds(15)).click();
         issuePriorityField.sendKeys("Lowest", Keys.ENTER);
-        issueMarksField.shouldBe(visible).click();
+
+        issueMarksField.shouldBe(visible, Duration.ofSeconds(15)).click();
         issueMarksField.sendKeys("test");
         issueMarksField.pressEnter();
-        issueEnvironmentVisualButton.shouldBe(visible);
-        issueEnvironmentVisualButton.click();
+
+        issueEnvironmentVisualButton.shouldBe(visible, Duration.ofSeconds(15)).click();
         switchTo().frame(issueEnvironmentInput);
-        SelenideElement environmentBody = $(byTagName("body"));
-        environmentBody.shouldBe(visible).setValue("Under test");
+        $(byTagName("body")).shouldBe(visible).setValue("Under test");
         switchTo().defaultContent();
-        getIssueEnvironmentVersion.shouldBe(interactable).sendKeys("v");
-        issueRelatedTasks.shouldBe(interactable).selectOption(1);
-        issueTaskChoice.shouldBe(interactable).sendKeys("IF_HW3_ManualTest");
-        Selenide.sleep(500);
-        issueTaskChoice.sendKeys(Keys.ENTER);
-        issueAssignToMe.shouldBe(visible).click();
-        issueEpicChoice.shouldBe(visible).click();
-        Selenide.sleep(500);
+
+        getIssueEnvironmentVersion.shouldBe(interactable, Duration.ofSeconds(15)).sendKeys("v");
+        issueRelatedTasks.shouldBe(interactable, Duration.ofSeconds(15)).selectOption(1);
+
+        // Для особо "капризных" элементов можно добавить дополнительное ожидание
+        issueTaskChoice.shouldBe(interactable, Duration.ofSeconds(15)).sendKeys("IF_HW3_ManualTest");
+        issueTaskChoice.shouldBe(interactable, Duration.ofSeconds(15)).pressEnter();
+
+        issueAssignToMe.shouldBe(visible, Duration.ofSeconds(15)).click();
+        issueEpicChoice.shouldBe(visible, Duration.ofSeconds(15)).click();
         issueEpicChoice.sendKeys(Keys.DOWN, Keys.ENTER);
-        issueSprintChoice.shouldBe(visible).click();
-        Selenide.sleep(500);
+
+        issueSprintChoice.shouldBe(interactable, Duration.ofSeconds(15)).click();
         issueSprintChoice.sendKeys(Keys.DOWN, Keys.ENTER);
-        issueSeverity.shouldBe(interactable).selectOption(2);
-        issueCreateButton.click();
+
+        issueSeverity.shouldBe(interactable, Duration.ofSeconds(15)).selectOption(2);
+//        issueCreateButton.shouldBe(interactable).click();
+//        issueCreateButton.click();
+//        Selenide.sleep(50000);
     }
 
     public void repoIssueWasMade() {

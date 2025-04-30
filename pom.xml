@@ -15,6 +15,7 @@
         <lombok.version>1.18.38</lombok.version>
         <junit-jupiter-api.version>5.13.0-M2</junit-jupiter-api.version>
         <selenide.version>7.9.1</selenide.version>
+        <selenium.version>4.31.0</selenium.version>
     </properties>
 
     <dependencies>
@@ -30,6 +31,12 @@
             <artifactId>junit-jupiter-api</artifactId>
             <version>${junit-jupiter-api.version}</version>
             <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>${selenium.version}</version>
         </dependency>
 
         <dependency>
