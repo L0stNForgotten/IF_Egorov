@@ -2,6 +2,7 @@ package ifellow.pages;
 
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.Keys;
+
 import java.time.Duration;
 
 import static com.codeborne.selenide.Condition.*;
@@ -32,6 +33,9 @@ public class ProjectPage {
     private final SelenideElement taskInputField = $x("//textarea[@name='summary']")
             .as("Поле ввода задачи");
 
+    private final SelenideElement taskRefreshCheck = $x("//div[@class='loading']")
+            .as("Кнопка увеличения на весь экран для проверки обновления страницы");
+
     public void projectCheckFilter() {
         projectsTaskListButton.shouldBe(interactable).click();
         projectSearchFilters.shouldBe(interactable).click();
@@ -39,9 +43,10 @@ public class ProjectPage {
     }
 
     public Integer projectTasksCountCheck() {
+        taskRefreshCheck.shouldBe(visible, Duration.ofSeconds(15));
+        taskRefreshCheck.shouldNotBe(exist, Duration.ofSeconds(15));
         return Integer.parseInt(projectTasksCounter.shouldBe(visible, Duration.ofSeconds(15))
                 .getText().split(" из ")[1]);
-        projectTasksCounter.wait(5000);
     }
 
     public void projectTaskCreator(String task) {

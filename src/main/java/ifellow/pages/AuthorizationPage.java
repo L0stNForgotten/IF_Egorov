@@ -24,5 +24,4 @@ public class AuthorizationPage {
         authorizationButton.shouldBe(interactable).click();
         Assertions.assertTrue(dashboardProjectTab.shouldBe(visible).isDisplayed());
     }
-
 }

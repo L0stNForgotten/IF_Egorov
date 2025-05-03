@@ -3,9 +3,9 @@ package ifellow.pages;
 import com.codeborne.selenide.SelenideElement;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.Keys;
+
 import java.time.Duration;
 
-import static com.codeborne.selenide.Condition.interactable;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byTagName;
 import static com.codeborne.selenide.Selenide.*;
@@ -95,7 +95,7 @@ public class BugRepoPage {
         getIssueEnvironmentVersion.shouldBe(interactable, Duration.ofSeconds(15)).sendKeys("v");
         issueRelatedTasks.shouldBe(interactable, Duration.ofSeconds(15)).selectOption(1);
 
-        issueTaskChoice.shouldBe(visible).sendKeys("IF_HW3_ManualTest");
+        issueTaskChoice.shouldBe(visible).sendKeys("IF_HW3_ManualTest1");
         issueTaskChoice.shouldHave(attribute("aria-expanded", "true"), Duration.ofSeconds(15));
         issueTaskChoice.pressEnter();
 

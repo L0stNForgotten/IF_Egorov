@@ -1,7 +1,8 @@
 package Ifellow.tests;
 
-import org.junit.jupiter.api.*;
 import ifellow.pages.*;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class JiraIFellowTest extends WebHooks {
     private final AuthorizationPage authorization = new AuthorizationPage();
@@ -47,7 +48,7 @@ public class JiraIFellowTest extends WebHooks {
     }
 
     @Test
-    public void closeTaskTest (){
+    public void closeTaskTest() {
         bugRepoTest();
         closeTask.closeTaskFromBugRepo();
     }

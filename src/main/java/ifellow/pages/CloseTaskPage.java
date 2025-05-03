@@ -1,14 +1,12 @@
 package ifellow.pages;
 
 import com.codeborne.selenide.SelenideElement;
-import org.junit.jupiter.api.Assertions;
-import org.openqa.selenium.Keys;
 
 import java.time.Duration;
 
-import static com.codeborne.selenide.Selenide.*;
-import org.openqa.selenium.*;
-import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Condition.interactable;
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selenide.$x;
 
 public class CloseTaskPage {
     private final SelenideElement onTaskSwitch = $x("//div[contains(@class,'message-success')]//a")
@@ -23,23 +21,19 @@ public class CloseTaskPage {
     private final SelenideElement taskBusinessProcess = $x("//span[text()='Бизнес-процесс']")
             .as("Кнопка бизнес процесс");
 
-    public void closeTaskFromBugRepo () {
+    private final SelenideElement taskBusinessProcessListItem = $x("//aui-item-link//a[@role='menuitem']//span[text()='Выполнено']")
+            .as("Элемент из списка 'Выполнено'");
+
+    public void closeTaskFromBugRepo() {
         onTaskSwitch
                 .shouldBe(interactable, Duration.ofSeconds(15))
                 .click();
-
         taskInProgress
                 .shouldBe(interactable, Duration.ofSeconds(15))
                 .click();
-
-// Проверяем статус "В работе" с помощью Selenide условий
         taskStatusCheck.shouldBe(interactable, Duration.ofSeconds(15)).shouldHave(text("В работе"));
-
-// Работаем с бизнес-процессом
         taskBusinessProcess.shouldBe(interactable, Duration.ofSeconds(15)).click();
-        taskBusinessProcess.sendKeys(Keys.DOWN, Keys.ENTER);
-
-// Проверяем статус "Готово"
+        taskBusinessProcessListItem.shouldBe(interactable, Duration.ofSeconds(10)).click();
         taskStatusCheck.shouldBe(interactable, Duration.ofSeconds(15));
         taskStatusCheck.shouldBe(interactable, Duration.ofSeconds(15)).shouldHave(text("Готово"));
 
