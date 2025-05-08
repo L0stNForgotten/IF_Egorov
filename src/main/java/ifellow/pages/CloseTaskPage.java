@@ -9,9 +9,6 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$x;
 
 public class CloseTaskPage {
-    private final SelenideElement onTaskSwitch = $x("//div[contains(@class,'message-success')]//a")
-            .as("Кнопка перехода на страницу созданного задания");
-
     private final SelenideElement taskInProgress = $x("//a[@id='action_id_21']")
             .as("Кнопка 'В работе'");
 
@@ -25,12 +22,7 @@ public class CloseTaskPage {
             .as("Элемент из списка 'Выполнено'");
 
     public void closeTaskFromBugRepo() {
-        onTaskSwitch
-                .shouldBe(interactable, Duration.ofSeconds(15))
-                .click();
-        taskInProgress
-                .shouldBe(interactable, Duration.ofSeconds(15))
-                .click();
+        taskInProgress.shouldBe(interactable, Duration.ofSeconds(15)).click();
         taskStatusCheck.shouldBe(interactable, Duration.ofSeconds(15)).shouldHave(text("В работе"));
         taskBusinessProcess.shouldBe(interactable, Duration.ofSeconds(15)).click();
         taskBusinessProcessListItem.shouldBe(interactable, Duration.ofSeconds(10)).click();

@@ -68,48 +68,44 @@ public class BugRepoPage {
     private final SelenideElement issueCreatedCheck = $x("//div[contains(@class,'aui-message-success')]")
             .as("Проверка создано ли задание");
 
+    private final SelenideElement onTaskSwitch = $x("//div[contains(@class,'message-success')]//a")
+            .as("Кнопка перехода на страницу созданного задания");
+
     public void bugRepoGeneration() {
         repoCreateIssueButton.shouldBe(interactable, Duration.ofSeconds(15)).click();
         issueTypeField.shouldBe(visible, Duration.ofSeconds(15)).click();
         issueTypeField.sendKeys("Ошибка", Keys.ENTER);
         issueTopicInput.shouldBe(visible).sendKeys("HW3_AutoTest_1");
-
         issueDescriptionVisualButton.shouldBe(visible, Duration.ofSeconds(15)).click();
         switchTo().frame(issueDescriptionInput);
         $(byTagName("body")).shouldBe(visible).setValue("Under test1");
         switchTo().defaultContent();
-
         issueDescriptionVersion.shouldBe(interactable, Duration.ofSeconds(15)).sendKeys("v");
         issuePriorityField.shouldBe(visible, Duration.ofSeconds(15)).click();
         issuePriorityField.sendKeys("Lowest", Keys.ENTER);
-
         issueMarksField.shouldBe(visible, Duration.ofSeconds(15)).click();
         issueMarksField.sendKeys("test");
         issueMarksField.pressEnter();
-
         issueEnvironmentVisualButton.shouldBe(visible, Duration.ofSeconds(15)).click();
         switchTo().frame(issueEnvironmentInput);
         $(byTagName("body")).shouldBe(visible).setValue("Under test");
         switchTo().defaultContent();
-
         getIssueEnvironmentVersion.shouldBe(interactable, Duration.ofSeconds(15)).sendKeys("v");
         issueRelatedTasks.shouldBe(interactable, Duration.ofSeconds(15)).selectOption(1);
-
         issueTaskChoice.shouldBe(visible).sendKeys("IF_HW3_ManualTest1");
         issueTaskChoice.shouldHave(attribute("aria-expanded", "true"), Duration.ofSeconds(15));
         issueTaskChoice.pressEnter();
-
         issueAssignToMe.shouldBe(visible, Duration.ofSeconds(15)).click();
-
         issueEpicChoice.shouldBe(visible, Duration.ofSeconds(15)).click();
         issueEpicChoice.sendKeys(Keys.DOWN, Keys.ENTER);
-
         issueSprintChoice.shouldBe(visible).click();
         issueSprintChoice.shouldBe(interactable, Duration.ofSeconds(15)).sendKeys(Keys.DOWN, Keys.ENTER);
-
         issueSeverity.shouldBe(interactable, Duration.ofSeconds(15)).selectOption(2);
         issueCreateButton.shouldBe(interactable, Duration.ofSeconds(15)).click();
-
         Assertions.assertTrue(issueCreatedCheck.shouldBe(visible, Duration.ofSeconds(15)).isDisplayed());
+    }
+
+    public void openCustomBugRepoPage() {
+        onTaskSwitch.shouldBe(interactable, Duration.ofSeconds(15)).click();
     }
 }

@@ -3,11 +3,16 @@ package ifellow.pages;
 import com.codeborne.selenide.SelenideElement;
 import org.junit.jupiter.api.Assertions;
 
+import java.time.Duration;
+
 import static com.codeborne.selenide.Condition.interactable;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$x;
 
 public class DashboardPage {
+    private final SelenideElement dashboardProjectTab = $x("//header[@role='banner']//ul[@class='aui-nav']//a[@id='browse_link']")
+            .as("Дэшборд вкладка проекты");
+
     private final SelenideElement dashboardProjectIcon = $x("//header[@role='banner']//ul[@class='aui-nav']//a[@id='browse_link']")
             .as("Вкладка проектов");
     private final SelenideElement dashboardProjects = $x("//ul[@class='aui-nav']//div//a[@href='/browse/TEST']")
@@ -15,9 +20,12 @@ public class DashboardPage {
     private final SelenideElement projectsSidebar = $x("//div[@class='aui-sidebar-body']")
             .as("Панель вкладок внутри проекта");
 
+    public void dashboardIsOpen() {
+        Assertions.assertTrue(dashboardProjectTab.shouldBe(visible, Duration.ofSeconds(15)).isDisplayed());
+    }
+
     public void dashboardUse() {
         dashboardProjectIcon.shouldBe(interactable).click();
         dashboardProjects.shouldBe(interactable).click();
-        Assertions.assertTrue(projectsSidebar.shouldBe(visible).isDisplayed());
     }
 }

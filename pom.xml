@@ -16,7 +16,18 @@
         <junit-jupiter-api.version>5.13.0-M2</junit-jupiter-api.version>
         <selenide.version>7.9.1</selenide.version>
         <selenium.version>4.31.0</selenium.version>
+        <cucumber.version>7.20.1</cucumber.version>
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.cucumber</groupId>
+                <artifactId>cucumber-bom</artifactId>
+                <version>${cucumber.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
         <dependency>
@@ -44,7 +55,14 @@
             <artifactId>selenide</artifactId>
             <version>${selenide.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>${cucumber.version}</version>
+        </dependency>
     </dependencies>
+
     <build>
         <plugins>
             <plugin>

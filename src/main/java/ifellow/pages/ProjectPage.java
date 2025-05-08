@@ -2,6 +2,7 @@ package ifellow.pages;
 
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.Keys;
+import org.junit.jupiter.api.Assertions;
 
 import java.time.Duration;
 
@@ -35,6 +36,10 @@ public class ProjectPage {
 
     private final SelenideElement taskRefreshCheck = $x("//div[@class='loading']")
             .as("Кнопка увеличения на весь экран для проверки обновления страницы");
+
+    public void projectPageIsOpen() {
+        Assertions.assertTrue(projectsTaskListButton.shouldBe(interactable, Duration.ofSeconds(15)).isDisplayed());
+    }
 
     public void projectCheckFilter() {
         projectsTaskListButton.shouldBe(interactable).click();
