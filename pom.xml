@@ -14,9 +14,13 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <lombok.version>1.18.38</lombok.version>
         <junit-jupiter-api.version>5.13.0-M2</junit-jupiter-api.version>
+        <junit-engine.version>1.13.0-M3</junit-engine.version>
+        <junit-suite.version>1.13.0-M3</junit-suite.version>
         <selenide.version>7.9.1</selenide.version>
         <selenium.version>4.31.0</selenium.version>
-        <cucumber.version>7.20.1</cucumber.version>
+        <cucumber.version>7.15.0</cucumber.version>
+        <cucumber-junit.version>7.15.0</cucumber-junit.version>
+        <cucumber-bom.version>7.15.0</cucumber-bom.version>
     </properties>
 
     <dependencyManagement>
@@ -24,7 +28,8 @@
             <dependency>
                 <groupId>io.cucumber</groupId>
                 <artifactId>cucumber-bom</artifactId>
-                <version>${cucumber.version}</version>
+                <version>${cucumber-bom.version}</version>
+                <scope>import</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -34,14 +39,24 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
-            <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
             <version>${junit-jupiter-api.version}</version>
-            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-engine</artifactId>
+            <version>${junit-engine.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-suite</artifactId>
+            <version>${junit-suite.version}</version>
         </dependency>
 
         <dependency>
@@ -60,6 +75,12 @@
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-java</artifactId>
             <version>${cucumber.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-junit-platform-engine</artifactId>
+            <version>${cucumber-junit.version}</version>
         </dependency>
     </dependencies>
 
