@@ -13,14 +13,14 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <lombok.version>1.18.38</lombok.version>
-        <junit-jupiter-api.version>5.13.0-M2</junit-jupiter-api.version>
-        <junit-engine.version>1.13.0-M3</junit-engine.version>
-        <junit-suite.version>1.13.0-M3</junit-suite.version>
+        <junit-jupiter-api.version>5.12.2</junit-jupiter-api.version>
+        <junit-platform.version>1.12.2</junit-platform.version>
+        <junit-suit.version>1.12.2</junit-suit.version>
         <selenide.version>7.9.1</selenide.version>
         <selenium.version>4.31.0</selenium.version>
-        <cucumber.version>7.15.0</cucumber.version>
-        <cucumber-junit.version>7.15.0</cucumber-junit.version>
-        <cucumber-bom.version>7.15.0</cucumber-bom.version>
+        <cucumber.version>7.20.1</cucumber.version>
+        <cucumber-junit.version>7.20.1</cucumber-junit.version>
+        <cucumber-bom.version>7.20.1</cucumber-bom.version>
     </properties>
 
     <dependencyManagement>
@@ -50,13 +50,13 @@
         <dependency>
             <groupId>org.junit.platform</groupId>
             <artifactId>junit-platform-engine</artifactId>
-            <version>${junit-engine.version}</version>
+            <version>${junit-platform.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.junit.platform</groupId>
             <artifactId>junit-platform-suite</artifactId>
-            <version>${junit-suite.version}</version>
+            <version>${junit-platform.version}</version>
         </dependency>
 
         <dependency>

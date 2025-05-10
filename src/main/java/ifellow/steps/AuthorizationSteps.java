@@ -9,6 +9,6 @@ public class AuthorizationSteps {
     @Когда("вводим данные {string} и {string}")
     public void authorizationInnitStep (String login, String password) { authorizationPage.authorizationInnit(login, password); }
 
-    @Тогда("проверяем, что открылась главная страница")
+    @Тогда("^проверяем, что открылась главная страница")
     public void checkAuthorizationStep () { dashboardPage.dashboardIsOpen(); }
 }

@@ -1,7 +1,6 @@
 package ifellow.pages;
 
 import com.codeborne.selenide.SelenideElement;
-import org.junit.jupiter.api.Assertions;
 
 import java.time.Duration;
 
