@@ -1,4 +1,4 @@
-package Ifellow.tests;
+package ifellow.tests;
 
 import ifellow.pages.*;
 import org.junit.jupiter.api.Assertions;

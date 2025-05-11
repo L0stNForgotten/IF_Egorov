@@ -14,25 +14,13 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <lombok.version>1.18.38</lombok.version>
         <junit-jupiter-api.version>5.12.2</junit-jupiter-api.version>
-        <junit-platform.version>1.12.2</junit-platform.version>
         <junit-suit.version>1.12.2</junit-suit.version>
-        <selenide.version>7.9.1</selenide.version>
-        <selenium.version>4.31.0</selenium.version>
-        <cucumber.version>7.20.1</cucumber.version>
+        <junit-platform.version>1.12.2</junit-platform.version>
         <cucumber-junit.version>7.20.1</cucumber-junit.version>
-        <cucumber-bom.version>7.20.1</cucumber-bom.version>
+        <cucumber.version>7.20.1</cucumber.version>
+        <selenide.version>7.9.1</selenide.version>
+        <selenium.version>4.32.0</selenium.version>
     </properties>
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>io.cucumber</groupId>
-                <artifactId>cucumber-bom</artifactId>
-                <version>${cucumber-bom.version}</version>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
 
     <dependencies>
         <dependency>
@@ -49,13 +37,13 @@
 
         <dependency>
             <groupId>org.junit.platform</groupId>
-            <artifactId>junit-platform-engine</artifactId>
-            <version>${junit-platform.version}</version>
+            <artifactId>junit-platform-suite</artifactId>
+            <version>${junit-suit.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.junit.platform</groupId>
-            <artifactId>junit-platform-suite</artifactId>
+            <artifactId>junit-platform-engine</artifactId>
             <version>${junit-platform.version}</version>
         </dependency>
 
@@ -82,6 +70,7 @@
             <artifactId>cucumber-junit-platform-engine</artifactId>
             <version>${cucumber-junit.version}</version>
         </dependency>
+
     </dependencies>
 
     <build>

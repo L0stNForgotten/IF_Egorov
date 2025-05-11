@@ -1,4 +1,4 @@
-package Ifellow.tests;
+package ifellow.tests;
 
 import lombok.Getter;
 import org.junit.jupiter.api.BeforeEach;
