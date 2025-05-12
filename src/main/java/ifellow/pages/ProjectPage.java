@@ -1,8 +1,8 @@
 package ifellow.pages;
 
 import com.codeborne.selenide.SelenideElement;
-import org.openqa.selenium.Keys;
 import org.junit.jupiter.api.Assertions;
+import org.openqa.selenium.Keys;
 
 import java.time.Duration;
 
@@ -37,6 +37,9 @@ public class ProjectPage {
     private final SelenideElement taskRefreshCheck = $x("//div[@class='loading']")
             .as("Кнопка увеличения на весь экран для проверки обновления страницы");
 
+    private final SelenideElement tasksListButton = $x("//div[@class='aui-sidebar-body']//ul[@class='aui-nav']//a[contains(@data-link-id,'plan-scrum')]")
+            .as("Кнопка списка всех задач");
+
     public void projectPageIsOpen() {
         Assertions.assertTrue(projectsTaskListButton.shouldBe(interactable, Duration.ofSeconds(15)).isDisplayed());
     }
@@ -59,5 +62,9 @@ public class ProjectPage {
         taskTypeChoice.shouldBe(interactable).click();
         taskTypeError.shouldBe(interactable).click();
         taskInputField.shouldBe(interactable).sendKeys(task, Keys.ENTER);
+    }
+
+    public void taskListButtonClick() {
+        tasksListButton.shouldBe(interactable).click();
     }
 }

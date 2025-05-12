@@ -2,7 +2,7 @@ package ifellow.cucumber.steps;
 
 import ifellow.pages.DashboardPage;
 import ifellow.pages.ProjectPage;
-import io.cucumber.java.ru.*;
+import io.cucumber.java.ru.Тогда;
 
 public class DashboardStep {
     private final DashboardPage dashboardPage = new DashboardPage();

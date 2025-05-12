@@ -27,6 +27,11 @@ public class DashboardPage {
         dashboardProjects.shouldBe(interactable, Duration.ofSeconds(15)).click();
     }
 
-    public void dashboardProjectIconClick () { dashboardProjectIcon.shouldBe(interactable, Duration.ofSeconds(15)).click(); }
-    public void dashboardTestProjectClick () { dashboardProjects.shouldBe(interactable, Duration.ofSeconds(15)).click(); }
+    public void dashboardProjectIconClick() {
+        dashboardProjectIcon.shouldBe(interactable, Duration.ofSeconds(15)).click();
+    }
+
+    public void dashboardTestProjectClick() {
+        dashboardProjects.shouldBe(interactable, Duration.ofSeconds(15)).click();
+    }
 }

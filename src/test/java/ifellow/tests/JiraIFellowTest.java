@@ -38,6 +38,7 @@ public class JiraIFellowTest extends WebHooks {
     @Test
     public void seleniumTaskTest() {
         projectTest();
+        project.taskListButtonClick();
         taskSelenium.taskInfoCheck();
         String[] info = taskSelenium.taskInfoGet();
         Assertions.assertTrue(info[0].equalsIgnoreCase("сделать"));

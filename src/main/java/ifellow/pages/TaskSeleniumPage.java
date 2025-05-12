@@ -7,8 +7,6 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$x;
 
 public class TaskSeleniumPage {
-    private final SelenideElement tasksListButton = $x("//div[@class='aui-sidebar-body']//ul[@class='aui-nav']//a[contains(@data-link-id,'plan-scrum')]")
-            .as("Кнопка списка всех задач");
 
     private final SelenideElement taskTitleCheck = $x("//span[@id]//span[@title='Список задач']")
             .as("Заголовок страницы");
@@ -29,7 +27,6 @@ public class TaskSeleniumPage {
             .as("Версия задачи");
 
     public void taskInfoCheck() {
-        tasksListButton.shouldBe(interactable).click();
         taskTitleCheck.shouldBe(visible);
         taskInputField.shouldBe(interactable).sendKeys("TestSeleniumATHomework", Keys.ENTER);
         taskSeleniumTask.shouldBe(exist).shouldBe(interactable).click();
@@ -41,5 +38,21 @@ public class TaskSeleniumPage {
                 taskSeleniumTaskStatus.shouldBe(visible).getText(),
                 taskSeleniumVersion.shouldBe(visible).getText()
         };
+    }
+
+    public void taskTitleCheck() {
+        taskTitleCheck.shouldBe(visible);
+    }
+
+    public void taskInputField() {
+        taskInputField.shouldBe(interactable).sendKeys("TestSeleniumATHomework", Keys.ENTER);
+    }
+
+    public void testingTaskInfoClick() {
+        taskSeleniumTask.shouldBe(exist).shouldBe(interactable).click();
+    }
+
+    public void testingTaskInfoCheck() {
+        taskTaskTab.shouldBe(visible);
     }
 }

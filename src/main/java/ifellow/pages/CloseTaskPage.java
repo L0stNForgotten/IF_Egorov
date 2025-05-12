@@ -30,4 +30,16 @@ public class CloseTaskPage {
         taskStatusCheck.shouldBe(interactable, Duration.ofSeconds(15)).shouldHave(text("Готово"));
 
     }
+
+    public void closeTaskInProgressState() {
+        taskInProgress.shouldBe(interactable, Duration.ofSeconds(15)).click();
+        taskStatusCheck.shouldBe(interactable, Duration.ofSeconds(15)).shouldHave(text("В работе"));
+    }
+
+    public void closeTaskDone() {
+        taskBusinessProcess.shouldBe(interactable, Duration.ofSeconds(15)).click();
+        taskBusinessProcessListItem.shouldBe(interactable, Duration.ofSeconds(10)).click();
+        taskStatusCheck.shouldBe(interactable, Duration.ofSeconds(15));
+        taskStatusCheck.shouldBe(interactable, Duration.ofSeconds(15)).shouldHave(text("Готово"));
+    }
 }
