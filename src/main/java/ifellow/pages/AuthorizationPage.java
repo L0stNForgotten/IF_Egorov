@@ -19,6 +19,9 @@ public class AuthorizationPage {
     public void authorizationInnit(String login, String password) {
         authorizationLoginInput.shouldBe(interactable, Duration.ofSeconds(15)).sendKeys(login);
         authorizationPasswordInput.shouldBe(interactable).sendKeys(password);
+    }
+
+    public void loginButtonClick() {
         authorizationButton.shouldBe(interactable).click();
     }
 }

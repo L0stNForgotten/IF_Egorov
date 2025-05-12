@@ -48,8 +48,8 @@ public class ProjectPage {
     }
 
     public Integer projectTasksCountCheck() {
-        taskRefreshCheck.shouldBe(visible, Duration.ofSeconds(15));
-        taskRefreshCheck.shouldNotBe(exist, Duration.ofSeconds(15));
+        taskRefreshCheck.shouldBe(visible, Duration.ofSeconds(20));
+        taskRefreshCheck.shouldNotBe(exist, Duration.ofSeconds(20));
         return Integer.parseInt(projectTasksCounter.shouldBe(visible, Duration.ofSeconds(15))
                 .getText().split(" из ")[1]);
     }

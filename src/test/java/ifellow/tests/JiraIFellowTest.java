@@ -14,7 +14,8 @@ public class JiraIFellowTest extends WebHooks {
 
     @Test
     public void authorizationTest() {
-        authorization.authorizationInnit(getDefaultLogin(), getDefaultPassword());
+        authorization.authorizationInnit("AT5", "Qwerty123");
+        authorization.loginButtonClick();
         dashboard.dashboardIsOpen();
     }
 

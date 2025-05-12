@@ -1,11 +1,10 @@
-package ifellow.cucumber;
+package ifellow.cucumber.hooks;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
 import io.cucumber.java.*;
 import org.openqa.selenium.PageLoadStrategy;
-import org.junit.jupiter.api.TestInfo;
 
 public class Hook {
     @BeforeAll

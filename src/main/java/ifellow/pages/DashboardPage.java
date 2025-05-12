@@ -17,15 +17,16 @@ public class DashboardPage {
             .as("Вкладка проектов");
     private final SelenideElement dashboardProjects = $x("//ul[@class='aui-nav']//div//a[@href='/browse/TEST']")
             .as("Проекты");
-    private final SelenideElement projectsSidebar = $x("//div[@class='aui-sidebar-body']")
-            .as("Панель вкладок внутри проекта");
 
     public void dashboardIsOpen() {
         Assertions.assertTrue(dashboardProjectTab.shouldBe(visible, Duration.ofSeconds(15)).isDisplayed());
     }
 
     public void dashboardUse() {
-        dashboardProjectIcon.shouldBe(interactable).click();
-        dashboardProjects.shouldBe(interactable).click();
+        dashboardProjectIcon.shouldBe(interactable, Duration.ofSeconds(15)).click();
+        dashboardProjects.shouldBe(interactable, Duration.ofSeconds(15)).click();
     }
+
+    public void dashboardProjectIconClick () { dashboardProjectIcon.shouldBe(interactable, Duration.ofSeconds(15)).click(); }
+    public void dashboardTestProjectClick () { dashboardProjects.shouldBe(interactable, Duration.ofSeconds(15)).click(); }
 }
