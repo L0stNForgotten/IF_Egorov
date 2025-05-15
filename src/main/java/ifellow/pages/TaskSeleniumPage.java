@@ -26,13 +26,6 @@ public class TaskSeleniumPage {
     private final SelenideElement taskSeleniumVersion = $x("//li[@class='item item-right']//a[contains(@href,'/issues/')]")
             .as("Версия задачи");
 
-    public void taskInfoCheck() {
-        taskTitleCheck.shouldBe(visible);
-        taskInputField.shouldBe(interactable).sendKeys("TestSeleniumATHomework", Keys.ENTER);
-        taskSeleniumTask.shouldBe(exist).shouldBe(interactable).click();
-        taskTaskTab.shouldBe(visible);
-    }
-
     public String[] taskInfoGet() {
         return new String[]{
                 taskSeleniumTaskStatus.shouldBe(visible).getText(),

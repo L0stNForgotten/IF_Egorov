@@ -21,16 +21,6 @@ public class CloseTaskPage {
     private final SelenideElement taskBusinessProcessListItem = $x("//aui-item-link//a[@role='menuitem']//span[text()='Выполнено']")
             .as("Элемент из списка 'Выполнено'");
 
-    public void closeTaskFromBugRepo() {
-        taskInProgress.shouldBe(interactable, Duration.ofSeconds(15)).click();
-        taskStatusCheck.shouldBe(interactable, Duration.ofSeconds(15)).shouldHave(text("В работе"));
-        taskBusinessProcess.shouldBe(interactable, Duration.ofSeconds(15)).click();
-        taskBusinessProcessListItem.shouldBe(interactable, Duration.ofSeconds(10)).click();
-        taskStatusCheck.shouldBe(interactable, Duration.ofSeconds(15));
-        taskStatusCheck.shouldBe(interactable, Duration.ofSeconds(15)).shouldHave(text("Готово"));
-
-    }
-
     public void closeTaskInProgressState() {
         taskInProgress.shouldBe(interactable, Duration.ofSeconds(15)).click();
         taskStatusCheck.shouldBe(interactable, Duration.ofSeconds(15)).shouldHave(text("В работе"));

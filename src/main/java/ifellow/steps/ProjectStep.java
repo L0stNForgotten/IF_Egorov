@@ -1,4 +1,4 @@
-package ifellow.cucumber.steps;
+package ifellow.steps;
 
 import ifellow.pages.ProjectPage;
 import io.cucumber.java.ru.Тогда;

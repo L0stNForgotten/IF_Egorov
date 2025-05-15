@@ -22,11 +22,6 @@ public class DashboardPage {
         Assertions.assertTrue(dashboardProjectTab.shouldBe(visible, Duration.ofSeconds(15)).isDisplayed());
     }
 
-    public void dashboardUse() {
-        dashboardProjectIcon.shouldBe(interactable, Duration.ofSeconds(15)).click();
-        dashboardProjects.shouldBe(interactable, Duration.ofSeconds(15)).click();
-    }
-
     public void dashboardProjectIconClick() {
         dashboardProjectIcon.shouldBe(interactable, Duration.ofSeconds(15)).click();
     }
