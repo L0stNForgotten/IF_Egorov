@@ -13,5 +13,4 @@ import static io.cucumber.core.options.Constants.PLUGIN_PROPERTY_NAME;
 @SelectPackages("features")
 @ConfigurationParameter(key = GLUE_PROPERTY_NAME, value = "ifellow.steps, ifellow.cucumber.hooks")
 @ConfigurationParameter(key = PLUGIN_PROPERTY_NAME, value = "pretty")
-public class CucumberTestRunner {
-}
+public class CucumberTestRunner {}
