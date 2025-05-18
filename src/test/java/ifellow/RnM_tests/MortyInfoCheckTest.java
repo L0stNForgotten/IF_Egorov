@@ -1,6 +1,5 @@
 package ifellow.RnM_tests;
 
-import java.security.Key;
 import java.util.Map;
 import io.restassured.RestAssured;
 import org.hamcrest.Matchers;
@@ -36,5 +35,6 @@ public class MortyInfoCheckTest {
     @Test
     public void MortyTest () {
         Map<String, Object> [] charInfo = charEpisodeInfo(2, "Morty Smith","episode[-1]"); // <- 0 - персонаж; 1 - епизод, который был указан
+        Map<String, Object> [] charInfo1 = charEpisodeInfo(1, "Rick Sunchez","episode[-1]");
     }
 }
