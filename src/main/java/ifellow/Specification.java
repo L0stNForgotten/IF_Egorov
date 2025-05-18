@@ -12,15 +12,12 @@ public class Specification {
     public static RequestSpecification baseRequest (String uri) {
         return new RequestSpecBuilder()
                 .setBaseUri(uri)
-                .setContentType(ContentType.JSON)
-                .log(LogDetail.BODY)
                 .build();
     }
 
     public static ResponseSpecification baseResponse (Integer statusCode) {
         return new ResponseSpecBuilder()
                 .expectStatusCode(statusCode)
-                .log(LogDetail.ALL)
                 .build();
     }
 }

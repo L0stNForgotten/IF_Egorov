@@ -1,20 +1,40 @@
 package ifellow.RnM_tests;
 
+import java.security.Key;
+import java.util.Map;
+import io.restassured.RestAssured;
 import org.hamcrest.Matchers;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static ifellow.Specification.*;
 import static io.restassured.RestAssured.given;
 
 public class MortyInfoCheckTest {
-    @Test
-    public void last_episode () {
-        String episode = given()
-                .baseUri("https://rickandmortyapi.com/api")
-                .when().get("/character/2")
+    @BeforeAll
+    public static void innit () {
+        RestAssured.requestSpecification = baseRequest("https://rickandmortyapi.com/api");
+        RestAssured.responseSpecification = baseResponse(200);
+    }
+
+    private Map<String, Object>[] charEpisodeInfo (Integer id, String nameToCheck, String episode) {
+        Map <String, Object> character = given()
+                .when().get("/character/"+id)
                 .then()
-                .assertThat().statusCode(200)
-                .body("name", Matchers.is("Morty Smith"))
-                .extract().path("episode[-1]");
-        System.out.println(episode + " - последний эпизод, где встречался Морти Смит"); // <- Сервер не обновлялся с 3 квартала 2021 года, поэтому информация данного сайта может быть не действительна.
+                .body("name", Matchers.is(nameToCheck))
+                .extract().path("");
+
+        Map <String, Object> charsEpisode = given().spec(baseRequest((String) character.get(episode)))
+                .when().get()
+                .then().extract().path("");
+
+        return (Map<String, Object>[]) new Map[] {character, charsEpisode};
+    }
+
+    @DisplayName("Запрос на поиск, где встречался последний раз персонаж")
+    @Test
+    public void MortyTest () {
+        Map<String, Object> [] charInfo = charEpisodeInfo(2, "Morty Smith","episode[-1]"); // <- 0 - персонаж; 1 - епизод, который был указан
     }
 }
