@@ -1,13 +1,13 @@
 package ifellow.api.rnm;
 
 import io.restassured.RestAssured;
+import io.restassured.path.json.JsonPath;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -34,49 +34,49 @@ public abstract class RnM_api {
         System.out.println("End of test case.");
     }
 
-    public static Map<String, Object> infoObject(String path_filter, String keyToCheck, String valueToCheck) {
+    public static JsonPath infoObject(String path_filter, String keyToCheck, String valueToCheck) {
         return given().when().get(path_filter)
                 .then()
                 .body(keyToCheck, Matchers.is(valueToCheck))
-                .extract().path("");
+                .extract().jsonPath();
     }
 
-    public static Map<String, Object> parserInsideInfo(Map<String, Object> subject, String key) {
+    public static JsonPath parserInsideInfo(JsonPath subject, String key) {
         return parserInsideInfo(subject, key, -1);
     }
 
-    public static Map<String, Object> parserInsideInfo(Map<String, Object> subject, String key, Integer id) {
-        Map<String, Object> outObj = new HashMap<>();
-        if (subject.get(key) instanceof Map) {
+    public static JsonPath parserInsideInfo(JsonPath subject, String key, Integer id) {
+        JsonPath outObj = null;
+
+        Object extracted = subject.get(key);
+
+        if (extracted instanceof Map) {
             @SuppressWarnings("unchecked")
-            Map<String, String> type_map = (Map<String, String>) subject.get(key);
+            Map<String, String> type_map = (Map<String, String>) extracted;
             outObj = given().spec(baseRequest(type_map.get("url")))
                     .when().get()
-                    .then().extract().path("");
-        } else if (subject.get(key) instanceof List) {
+                    .then().extract().jsonPath();
+        } else if (extracted instanceof List) {
             @SuppressWarnings("unchecked")
-            List<String> urls_list = (List<String>) subject.get(key);
+            List<String> urls_list = (List<String>) extracted;
             if (id < 0) {
                 id = urls_list.size() + id;
             }
             outObj = given().spec(baseRequest(urls_list.get(id)))
                     .when().get()
-                    .then().extract().path("");
+                    .then().extract().jsonPath();
         }
-        return outObj;
-    }
 
-    public static String checkEqualsAndNotEquals(Map<String, Object> object1, Map<String, Object> object2, String param) {
-        return checkEqualsAndNotEquals((String) object1.get(param), (String) object2.get(param));
+        return outObj;
     }
 
     public static String checkEqualsAndNotEquals(String object1, String object2) {
         if (object1.equals(object2)) {
             Assertions.assertEquals(object1, object2);
-            return (" are equals.");
+            return " are equals.";
         } else {
             Assertions.assertNotEquals(object1, object2);
-            return (" are not equals.");
+            return " are not equals.";
         }
     }
 }
