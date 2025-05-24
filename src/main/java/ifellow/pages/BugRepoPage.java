@@ -68,48 +68,92 @@ public class BugRepoPage {
     private final SelenideElement issueCreatedCheck = $x("//div[contains(@class,'aui-message-success')]")
             .as("Проверка создано ли задание");
 
-    public void bugRepoGeneration() {
+    private final SelenideElement onTaskSwitch = $x("//div[contains(@class,'message-success')]//a")
+            .as("Кнопка перехода на страницу созданного задания");
+
+    public void openCustomBugRepoPage() {
+        onTaskSwitch.shouldBe(interactable, Duration.ofSeconds(15)).click();
+    }
+
+    public void createIssueButtonClick() {
         repoCreateIssueButton.shouldBe(interactable, Duration.ofSeconds(15)).click();
+    }
+
+    public void issueTypeFieldInput() {
         issueTypeField.shouldBe(visible, Duration.ofSeconds(15)).click();
         issueTypeField.sendKeys("Ошибка", Keys.ENTER);
-        issueTopicInput.shouldBe(visible).sendKeys("HW3_AutoTest_1");
+    }
 
+    public void issueTopicInput(String topic) {
+        issueTopicInput.shouldBe(visible).sendKeys(topic);
+    }
+
+    public void issueDescriptionInput(String description) {
         issueDescriptionVisualButton.shouldBe(visible, Duration.ofSeconds(15)).click();
         switchTo().frame(issueDescriptionInput);
-        $(byTagName("body")).shouldBe(visible).setValue("Under test1");
+        $(byTagName("body")).shouldBe(visible).setValue(description);
         switchTo().defaultContent();
+    }
 
+    public void issueFixVersionChoice() {
         issueDescriptionVersion.shouldBe(interactable, Duration.ofSeconds(15)).sendKeys("v");
+    }
+
+    public void changeIssuePriority() {
         issuePriorityField.shouldBe(visible, Duration.ofSeconds(15)).click();
         issuePriorityField.sendKeys("Lowest", Keys.ENTER);
+    }
 
+    public void issueMarksFieldChoice() {
         issueMarksField.shouldBe(visible, Duration.ofSeconds(15)).click();
         issueMarksField.sendKeys("test");
         issueMarksField.pressEnter();
+    }
 
+    public void issueEnvironmentDescriptionInput(String description) {
         issueEnvironmentVisualButton.shouldBe(visible, Duration.ofSeconds(15)).click();
         switchTo().frame(issueEnvironmentInput);
-        $(byTagName("body")).shouldBe(visible).setValue("Under test");
+        $(byTagName("body")).shouldBe(visible).setValue(description);
         switchTo().defaultContent();
+    }
 
+    public void issueEnvironmentVersionChoice() {
         getIssueEnvironmentVersion.shouldBe(interactable, Duration.ofSeconds(15)).sendKeys("v");
-        issueRelatedTasks.shouldBe(interactable, Duration.ofSeconds(15)).selectOption(1);
+    }
 
-        issueTaskChoice.shouldBe(visible).sendKeys("IF_HW3_ManualTest1");
+    public void issueRelatedTaskChoice() {
+        issueRelatedTasks.shouldBe(interactable, Duration.ofSeconds(15)).selectOption(1);
+    }
+
+    public void issueTaskChoiceInput() {
+        issueTaskChoice.shouldBe(visible).sendKeys("IF_HW3_ManualTest");
         issueTaskChoice.shouldHave(attribute("aria-expanded", "true"), Duration.ofSeconds(15));
         issueTaskChoice.pressEnter();
+    }
 
+    public void issueAssignment() {
         issueAssignToMe.shouldBe(visible, Duration.ofSeconds(15)).click();
+    }
 
+    public void issueEpicChoiceClick() {
         issueEpicChoice.shouldBe(visible, Duration.ofSeconds(15)).click();
         issueEpicChoice.sendKeys(Keys.DOWN, Keys.ENTER);
+    }
 
+    public void issueSprintChoiceClick() {
         issueSprintChoice.shouldBe(visible).click();
         issueSprintChoice.shouldBe(interactable, Duration.ofSeconds(15)).sendKeys(Keys.DOWN, Keys.ENTER);
+    }
 
+    public void changeIssueSeverity() {
         issueSeverity.shouldBe(interactable, Duration.ofSeconds(15)).selectOption(2);
-        issueCreateButton.shouldBe(interactable, Duration.ofSeconds(15)).click();
+    }
 
+    public void createIssueBugRepo() {
+        issueCreateButton.shouldBe(interactable, Duration.ofSeconds(15)).click();
+    }
+
+    public void checkIssueCreate() {
         Assertions.assertTrue(issueCreatedCheck.shouldBe(visible, Duration.ofSeconds(15)).isDisplayed());
     }
 }

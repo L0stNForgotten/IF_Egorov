@@ -7,6 +7,8 @@ import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.Configuration;
 import org.openqa.selenium.PageLoadStrategy;
 
+import static ifellow.Config.JIRA_URL;
+
 @Getter
 public abstract class WebHooks {
     private final String defaultLogin = "AT5";
@@ -16,7 +18,7 @@ public abstract class WebHooks {
     public void testConfig() {
         Configuration.pageLoadStrategy = PageLoadStrategy.NORMAL.toString();
         Configuration.timeout = 20000;
-        Selenide.open("https://edujira.ifellow.ru/");
+        Selenide.open(JIRA_URL.get());
         Selenide.webdriver().driver().getWebDriver().manage().window().maximize();
     }
 

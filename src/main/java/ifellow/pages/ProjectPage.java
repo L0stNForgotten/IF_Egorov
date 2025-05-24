@@ -1,6 +1,7 @@
 package ifellow.pages;
 
 import com.codeborne.selenide.SelenideElement;
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.Keys;
 
 import java.time.Duration;
@@ -36,6 +37,13 @@ public class ProjectPage {
     private final SelenideElement taskRefreshCheck = $x("//div[@class='loading']")
             .as("Кнопка увеличения на весь экран для проверки обновления страницы");
 
+    private final SelenideElement tasksListButton = $x("//div[@class='aui-sidebar-body']//ul[@class='aui-nav']//a[contains(@data-link-id,'plan-scrum')]")
+            .as("Кнопка списка всех задач");
+
+    public void projectPageIsOpen() {
+        Assertions.assertTrue(projectsTaskListButton.shouldBe(interactable, Duration.ofSeconds(15)).isDisplayed());
+    }
+
     public void projectCheckFilter() {
         projectsTaskListButton.shouldBe(interactable).click();
         projectSearchFilters.shouldBe(interactable).click();
@@ -43,8 +51,8 @@ public class ProjectPage {
     }
 
     public Integer projectTasksCountCheck() {
-        taskRefreshCheck.shouldBe(visible, Duration.ofSeconds(15));
-        taskRefreshCheck.shouldNotBe(exist, Duration.ofSeconds(15));
+        taskRefreshCheck.shouldBe(visible, Duration.ofSeconds(20));
+        taskRefreshCheck.shouldNotBe(exist, Duration.ofSeconds(20));
         return Integer.parseInt(projectTasksCounter.shouldBe(visible, Duration.ofSeconds(15))
                 .getText().split(" из ")[1]);
     }
@@ -54,5 +62,9 @@ public class ProjectPage {
         taskTypeChoice.shouldBe(interactable).click();
         taskTypeError.shouldBe(interactable).click();
         taskInputField.shouldBe(interactable).sendKeys(task, Keys.ENTER);
+    }
+
+    public void taskListButtonClick() {
+        tasksListButton.shouldBe(interactable).click();
     }
 }
