@@ -13,36 +13,32 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <log4j.version>2.17.1</log4j.version>
-        <slf4j-nop.version>2.0.17</slf4j-nop.version>
-
+        <log4j.version>2.23.1</log4j.version>
+        <slf4j.version>2.0.17</slf4j.version>
         <lombok.version>1.18.38</lombok.version>
-
         <junit-jupiter-api.version>5.12.2</junit-jupiter-api.version>
         <junit-suit.version>1.12.2</junit-suit.version>
         <junit-platform.version>1.12.2</junit-platform.version>
-
         <selenide.version>7.9.1</selenide.version>
         <selenium.version>4.32.0</selenium.version>
-
         <cucumber-junit.version>7.20.1</cucumber-junit.version>
         <cucumber.version>7.20.1</cucumber.version>
-
         <rest-assured.version>5.5.0</rest-assured.version>
         <fasterxml.version>2.18.2</fasterxml.version>
     </properties>
 
     <dependencies>
         <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-to-slf4j</artifactId>
-            <version>${log4j.version}</version>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-nop</artifactId>
-            <version>${slf4j-nop.version}</version>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.5.16</version>
+            <scope>compile</scope>
         </dependency>
 
         <dependency>

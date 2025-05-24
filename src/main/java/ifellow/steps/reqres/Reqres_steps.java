@@ -17,7 +17,9 @@ public class Reqres_steps extends Reqres_api {
     public Map<String, Object> refData(JsonPath obj, String name, String job) {
         Map<String, Object> uObj = obj.getMap("");
         uObj.replace("name", name);
+        log.info("Name was replaced/created. Name - {}", uObj.get("name"));
         uObj.put("job", job);
+        log.info("Job was replaced/created. Job - {}", uObj.get("job"));
         return uObj;
     }
 
@@ -27,7 +29,9 @@ public class Reqres_steps extends Reqres_api {
                 .contentType(ContentType.JSON)
                 .body(data)
                 .when().post();
+        log.info("Data was posted. Check response.");
         response.then().statusCode(201);
+        log.info("Status code was checked.");
         return response;
     }
 

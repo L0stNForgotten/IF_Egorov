@@ -5,45 +5,38 @@ import io.restassured.path.json.JsonPath;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
-import java.util.Map;
 
+import static ifellow.api.ApiConfig.*;
 import static ifellow.api.reqres.Reqres_specification.baseRequest;
 
 public abstract class Reqres_api {
+    public static final Logger log = LoggerFactory.getLogger(Reqres_api.class);
 
     @BeforeAll
     public static void init() {
+        log.info("Start of test case.");
+        log.info("Test requests to {} servers", REQRES_URL.get());
         RestAssured.requestSpecification = baseRequest(
-                "https://reqres.in/api/",
-                "x-api-key",
-                "reqres-free-v1");
-        System.out.println("Start of test case.");
-        System.out.println("Test requests to https://reqres.in servers");
+                REQRES_URL.get(),
+                REQRES_API_HEADER_KEY.get(),
+                REQRES_API_HEADER_VALUE.get());
     }
 
     @AfterEach
     public void endOfTests() {
-        System.out.println("Test end.\n");
+        log.info("Test end.");
     }
 
     @AfterAll
     public static void endOfTestCase() {
-        System.out.println("End of test case.");
+        log.info("End of test case.");
     }
 
     public static JsonPath jsonPathGetter(String jsonFile) {
         return JsonPath.from(new File("src/test/resources/" + jsonFile));
-    }
-
-    public Map<String, Object> refJsonData(JsonPath obj, String key, String value) {
-        Map<String, Object> objData = obj.getMap("");
-        return refJsonData(objData, key, value);
-    }
-
-    public Map<String, Object> refJsonData(Map<String, Object> obj, String key, String value) {
-        obj.replace(key, value);
-        return obj;
     }
 }

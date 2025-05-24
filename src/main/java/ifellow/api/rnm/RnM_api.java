@@ -7,31 +7,37 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.Map;
 
+import static ifellow.api.ApiConfig.RNM_URL;
 import static ifellow.api.rnm.RnM_specification.baseRequest;
 import static ifellow.api.rnm.RnM_specification.baseResponse;
 import static io.restassured.RestAssured.given;
 
 public abstract class RnM_api {
+
+    public static final Logger log = LoggerFactory.getLogger(RnM_api.class);
+
     @BeforeAll
     public static void init() {
-        RestAssured.requestSpecification = baseRequest("https://rickandmortyapi.com/api/");
+        log.info("Start of test case.");
+        log.info("Test requests to {} servers", RNM_URL.get());
+        RestAssured.requestSpecification = baseRequest(RNM_URL.get());
         RestAssured.responseSpecification = baseResponse(200);
-        System.out.println("Start of test case.");
-        System.out.println("Test requests to https://rickandmortyapi.com servers");
     }
 
     @AfterEach
     public void endOfTests() {
-        System.out.println("Test end.\n");
+        log.info("Test end.");
     }
 
     @AfterAll
     public static void endOfTestCase() {
-        System.out.println("End of test case.");
+        log.info("End of test case.");
     }
 
     public static JsonPath infoObject(String path_filter, String keyToCheck, String valueToCheck) {
