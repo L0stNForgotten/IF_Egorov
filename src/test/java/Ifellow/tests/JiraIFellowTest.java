@@ -1,55 +1,14 @@
 package Ifellow.tests;
 
-import ifellow.pages.*;
-import org.junit.jupiter.api.Assertions;
+import ifellow.steps.*;
 import org.junit.jupiter.api.Test;
 
 public class JiraIFellowTest extends WebHooks {
-    private final AuthorizationPage authorization = new AuthorizationPage();
-    private final DashboardPage dashboard = new DashboardPage();
-    private final ProjectPage project = new ProjectPage();
-    private final TaskSeleniumPage taskSelenium = new TaskSeleniumPage();
-    private final BugRepoPage bugRepo = new BugRepoPage();
-    private final CloseTaskPage closeTask = new CloseTaskPage();
+    AuthrizationSteps authrizationSteps = new AuthrizationSteps();
 
     @Test
-    public void authorizationTest() {
-        authorization.authorizationInnit(getDefaultLogin(), getDefaultPassword());
-    }
-
-    @Test
-    public void dashboardTest() {
-        authorizationTest();
-        dashboard.dashboardUse();
-    }
-
-    @Test
-    public void projectTest() {
-        dashboardTest();
-        project.projectCheckFilter();
-        int beforeInt = project.projectTasksCountCheck();
-        project.projectTaskCreator("Test task input");
-        Assertions.assertEquals(beforeInt + 1, project.projectTasksCountCheck());
-    }
-
-    @Test
-    public void seleniumTaskTest() {
-        projectTest();
-        taskSelenium.taskInfoCheck();
-        String[] info = taskSelenium.taskInfoGet();
-        Assertions.assertTrue(info[0].equalsIgnoreCase("сделать"));
-        Assertions.assertTrue(info[1].equalsIgnoreCase("version 2.0"));
-    }
-
-    @Test
-    public void bugRepoTest() {
-        projectTest();
-        bugRepo.bugRepoGeneration();
-    }
-
-    @Test
-    public void closeTaskTest() {
-        bugRepoTest();
-        closeTask.closeTaskFromBugRepo();
+    public void autTest() {
+        authrizationSteps.autInput(getDefaultLogin(),getDefaultPassword());
+        authrizationSteps.autSignIn();
     }
 }
