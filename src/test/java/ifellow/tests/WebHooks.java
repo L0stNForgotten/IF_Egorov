@@ -1,6 +1,8 @@
-package Ifellow.tests;
+package ifellow.tests;
 
-import lombok.Getter;
+import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.selenide.AllureSelenide;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.AfterEach;
 import com.codeborne.selenide.Selenide;
@@ -9,10 +11,15 @@ import org.openqa.selenium.PageLoadStrategy;
 
 import static ifellow.Config.JIRA_URL;
 
-@Getter
 public abstract class WebHooks {
-    private final String defaultLogin = "AT5";
-    private final String defaultPassword = "Qwerty123";
+
+    @BeforeAll
+    public static void setUpAllure() {
+        SelenideLogger.addListener("AllureSelenide",
+                new AllureSelenide()
+                        .screenshots(true)
+                        .savePageSource(false));
+    }
 
     @BeforeEach
     public void testConfig() {
