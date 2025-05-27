@@ -126,7 +126,7 @@ public class BugRepoPage {
     }
 
     public void issueTaskChoiceInput() {
-        issueTaskChoice.shouldBe(visible).sendKeys("IF_HW3_ManualTest");
+        issueTaskChoice.shouldBe(visible).sendKeys("test");
         issueTaskChoice.shouldHave(attribute("aria-expanded", "true"), Duration.ofSeconds(15));
         issueTaskChoice.pressEnter();
     }

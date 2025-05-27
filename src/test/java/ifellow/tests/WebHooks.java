@@ -12,7 +12,6 @@ import org.openqa.selenium.PageLoadStrategy;
 import static ifellow.Config.JIRA_URL;
 
 public abstract class WebHooks {
-
     @BeforeAll
     public static void setUpAllure() {
         SelenideLogger.addListener("AllureSelenide",

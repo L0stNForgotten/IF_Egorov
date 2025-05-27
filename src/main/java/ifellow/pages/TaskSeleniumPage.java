@@ -37,8 +37,8 @@ public class TaskSeleniumPage {
         taskTitleCheck.shouldBe(visible);
     }
 
-    public void taskInputField() {
-        taskInputField.shouldBe(interactable).sendKeys("TestSeleniumATHomework", Keys.ENTER);
+    public void taskInputField(String input) {
+        taskInputField.shouldBe(interactable).sendKeys(input, Keys.ENTER);
     }
 
     public void testingTaskInfoClick() {
