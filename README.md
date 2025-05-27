@@ -1,4 +1,4 @@
-# **JIRA Test Homework №6 fo Ifellow Academy**
+# **JIRA Test Homework №6 for Ifellow Academy**
 ## ***by Egorov Semyon***
 _____
 Задача:
