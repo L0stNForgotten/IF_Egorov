@@ -17,8 +17,8 @@ public class AuthorizationPage {
             .as("Кнопка входа");
 
     public void authorizationInnit(String login, String password) {
-        authorizationLoginInput.shouldBe(interactable, Duration.ofSeconds(15)).sendKeys(login);
-        authorizationPasswordInput.shouldBe(interactable).sendKeys(password);
+        authorizationLoginInput.shouldBe(interactable, Duration.ofSeconds(15)).setValue(login);
+        authorizationPasswordInput.shouldBe(interactable).setValue(password);
     }
 
     public void loginButtonClick() {

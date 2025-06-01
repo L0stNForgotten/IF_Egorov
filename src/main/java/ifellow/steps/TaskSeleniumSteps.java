@@ -1,5 +1,6 @@
 package ifellow.steps;
 
+import ifellow.config.StepsData;
 import io.qameta.allure.Step;
 import org.junit.jupiter.api.Assertions;
 

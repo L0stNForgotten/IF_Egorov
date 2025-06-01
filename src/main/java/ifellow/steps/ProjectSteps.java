@@ -1,5 +1,6 @@
 package ifellow.steps;
 
+import ifellow.config.StepsData;
 import io.qameta.allure.Step;
 import org.junit.jupiter.api.Assertions;
 
@@ -21,11 +22,11 @@ public class ProjectSteps extends StepsData {
     }
 
     @Step("Verify task count after creating new task: {name}")
-    public void projCountAfterCheck(String name){
+    public void projCountAfterCheck(String name) {
         log.info("Creating new task with name: {}", name);
         getProject().projectTaskCreator(name);
         log.info("Task count verification");
-        Assertions.assertEquals(beforeInt,getProject().projectTasksCountCheck()-1);
+        Assertions.assertEquals(beforeInt, getProject().projectTasksCountCheck() - 1);
         log.info("Task count verification passed successfully");
     }
 

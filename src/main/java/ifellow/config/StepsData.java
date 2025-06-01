@@ -1,11 +1,12 @@
-package ifellow.steps;
+package ifellow.config;
 
 import ifellow.pages.*;
 import lombok.Getter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 @Getter
-abstract class StepsData {
+abstract public class StepsData {
     private final AuthorizationPage authorization = new AuthorizationPage();
     private final DashboardPage dashboard = new DashboardPage();
     private final ProjectPage project = new ProjectPage();

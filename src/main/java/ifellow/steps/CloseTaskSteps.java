@@ -1,8 +1,9 @@
 package ifellow.steps;
 
+import ifellow.config.StepsData;
 import io.qameta.allure.Step;
 
-public class CloseTaskSteps extends StepsData{
+public class CloseTaskSteps extends StepsData {
     @Step("Open previously created task")
     public void taskOpenCreatedTask() {
         log.info("Opening the created task");

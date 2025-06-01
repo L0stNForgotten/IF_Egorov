@@ -1,5 +1,6 @@
 package ifellow.steps;
 
+import ifellow.config.StepsData;
 import io.qameta.allure.Step;
 
 public class DashboardSteps extends StepsData {
