@@ -1,44 +1,14 @@
 package ifellow.api.rnm;
 
-import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import org.hamcrest.Matchers;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.List;
 import java.util.Map;
-
-import static ifellow.api.ApiConfig.RNM_URL;
 import static ifellow.api.rnm.RnM_specification.baseRequest;
-import static ifellow.api.rnm.RnM_specification.baseResponse;
 import static io.restassured.RestAssured.given;
 
 public abstract class RnM_api {
-
-    public static final Logger log = LoggerFactory.getLogger(RnM_api.class);
-
-    @BeforeAll
-    public static void init() {
-        log.info("Start of test case.");
-        log.info("Test requests to {} servers", RNM_URL.get());
-        RestAssured.requestSpecification = baseRequest(RNM_URL.get());
-        RestAssured.responseSpecification = baseResponse(200);
-    }
-
-    @AfterEach
-    public void endOfTests() {
-        log.info("Test end.");
-    }
-
-    @AfterAll
-    public static void endOfTestCase() {
-        log.info("End of test case.");
-    }
 
     public static JsonPath infoObject(String path_filter, String keyToCheck, String valueToCheck) {
         return given().when().get(path_filter)

@@ -3,6 +3,8 @@ package ifellow.api;
 import java.util.ResourceBundle;
 
 public enum ApiConfig {
+    STEPS_DIR("cucumber.steps.dir"),
+    HOOKS_DIR("cucumber.hooks.dir"),
     RNM_URL("rnm.url"),
     REQRES_URL("reqres.url"),
     REQRES_API_HEADER_KEY("reqres.api.key"),

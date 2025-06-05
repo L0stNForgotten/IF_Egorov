@@ -1,6 +1,7 @@
 package ifellow.reqres_tests;
 
-import ifellow.api.reqres.Reqres_api;
+
+import ifellow.hooks.Reqres_hook;
 import ifellow.steps.reqres.Reqres_steps;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
@@ -10,7 +11,9 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Map;
 
-public class PotatoTest extends Reqres_api {
+
+
+public class PotatoTest extends Reqres_hook {
     private final Reqres_steps steps = new Reqres_steps();
     private final String name = "Tomato";
     private final String job = "Eat maket";
