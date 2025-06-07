@@ -11,6 +11,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
         <slf4j.version>2.0.17</slf4j.version>
         <logback.version>1.5.16</logback.version>
         <lombok.version>1.18.38</lombok.version>
@@ -19,17 +20,19 @@
         <junit-suit.version>1.12.2</junit-suit.version>
         <junit-jupiter.version>5.12.2</junit-jupiter.version>
         <junit-platform.version>1.12.2</junit-platform.version>
+
         <selenide.version>7.9.1</selenide.version>
         <selenium.version>4.32.0</selenium.version>
         <rest-assured.version>5.5.0</rest-assured.version>
         <fasterxml.version>2.18.2</fasterxml.version>
 
-        <cucumber-junit.version>7.20.1</cucumber-junit.version>
         <cucumber.version>7.20.1</cucumber.version>
+
         <allure.version>2.24.0</allure.version>
         <allure-selenide.version>2.20.1</allure-selenide.version>
         <allure-cucumber.version>2.20.1</allure-cucumber.version>
         <aspectj.version>1.9.19</aspectj.version>
+
     </properties>
     <dependencies>
         <dependency>
@@ -98,7 +101,17 @@
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-junit-platform-engine</artifactId>
-            <version>${cucumber-junit.version}</version>
+            <version>${cucumber.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-spring</artifactId>
+            <version>${cucumber.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>6.2.7</version>
         </dependency>
         <dependency>
             <groupId>io.qameta.allure</groupId>

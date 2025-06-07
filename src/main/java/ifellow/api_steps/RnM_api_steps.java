@@ -1,4 +1,4 @@
-package ifellow.steps.rnm;
+package ifellow.api_steps;
 
 import ifellow.api.rnm.RnM_api;
 import io.restassured.path.json.JsonPath;
@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Assertions;
 import java.util.HashMap;
 import java.util.Map;
 
-public class RnM_steps extends RnM_api {
+public class RnM_api_steps extends RnM_api {
 
     private final JsonPath morty = infoObject("/character/2", "status", "Alive");
     private final JsonPath episode = parserInsideInfo(morty, "episode");

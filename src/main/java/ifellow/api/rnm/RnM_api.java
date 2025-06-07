@@ -1,14 +1,19 @@
 package ifellow.api.rnm;
 
+
 import io.restassured.path.json.JsonPath;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Assertions;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.List;
 import java.util.Map;
 import static ifellow.api.rnm.RnM_specification.baseRequest;
 import static io.restassured.RestAssured.given;
 
 public abstract class RnM_api {
+    public static final Logger log = LoggerFactory.getLogger(RnM_api.class);
 
     public static JsonPath infoObject(String path_filter, String keyToCheck, String valueToCheck) {
         return given().when().get(path_filter)
