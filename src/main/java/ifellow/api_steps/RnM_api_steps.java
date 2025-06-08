@@ -9,56 +9,30 @@ import java.util.Map;
 
 public class RnM_api_steps extends RnM_api {
 
-    private final JsonPath morty = infoObject("/character/2", "status", "Alive");
-    private final JsonPath episode = parserInsideInfo(morty, "episode");
-    private final JsonPath lastPerson = parserInsideInfo(episode, "characters");
-    private final JsonPath mLocation = parserInsideInfo(morty, "location");
-    private final JsonPath lpLocation = parserInsideInfo(lastPerson, "location");
+    public Map<String, String>[] getRaceAndLocation(JsonPath obj1, JsonPath obj2) {
+        JsonPath obj1loc = parserInsideInfo(obj1, "location");
+        JsonPath obj2loc = parserInsideInfo(obj2, "location");
 
-    public void checkMortyName() {
-        String name = morty.getString("name");
-        Assertions.assertTrue(name.equalsIgnoreCase("Morty Smith"));
-        log.info("Person \"{}\" was found.", name);
-    }
-
-    public void getMortyLastEpisodeTest() {
-        String episodeCode = episode.getString("episode");
-        Assertions.assertTrue(episodeCode.equalsIgnoreCase("S05E10"));
-        log.info("Episode \"{}\" was found.", episode.getString("name"));
-    }
-
-    public void getLastEpisodePerson() {
-        String name = lastPerson.getString("name");
-        Assertions.assertTrue(name.equalsIgnoreCase("Young Jerry"));
-        log.info("Episode's last person \"{}\" was found.", name);
-    }
-
-    public void lepGetLocation() {
-        String locationName = lpLocation.getString("name");
-        Assertions.assertTrue(locationName.equalsIgnoreCase("Earth (Unknown dimension)"));
-        log.info("Location of {} - {}", lastPerson.getString("name"), locationName);
-    }
-
-    public Map<String, String>[] getRaceAndLocation() {
         Map<String, String> species = new HashMap<>();
-        species.put(morty.getString("name"), morty.getString("species"));
-        species.put(lastPerson.getString("name"), lastPerson.getString("species"));
+        species.put(obj1.getString("name"), obj1.getString("species"));
+        species.put(obj2.getString("name"), obj2.getString("species"));
 
         Map<String, String> locations = new HashMap<>();
-        locations.put(morty.getString("name"), mLocation.getString("name"));
-        locations.put(lastPerson.getString("name"), lpLocation.getString("name"));
+        locations.put(obj1.getString("name"), obj1loc.getString("name"));
+        locations.put(obj2.getString("name"), obj2loc.getString("name"));
 
         log.info("Gotten all needed species and locations.");
         return new Map[]{species, locations};
     }
 
-    public void comparisonOfInfo(Map<String, String>[] infoMassive) {
+    public void comparisonOfInfo(Map<String, String>[] infoMassive, JsonPath obj1, JsonPath obj2) {
+        String obj1name = obj1.getString("name");
+        String obj2name = obj2.getString("name");
+
         for (Map<String, String> items : infoMassive) {
-            String mortyName = morty.getString("name");
-            String lastPersonName = lastPerson.getString("name");
-            String answer = checkEqualsAndNotEquals(items.get(mortyName), items.get(lastPersonName));
-            log.info("Given: {} ({}) and {} ({}).", items.get(mortyName), mortyName, items.get(lastPersonName), lastPersonName);
-            log.info("{} and {}{}", mortyName, lastPersonName, answer);
+            String answer = checkEqualsAndNotEquals(items.get(obj1name), items.get(obj2name));
+            log.info("Given: {} ({}) and {} ({}).", items.get(obj1name), obj1name, items.get(obj2name), obj2name);
+            log.info("{} and {}{}", obj1name, obj2name, answer);
         }
     }
 }

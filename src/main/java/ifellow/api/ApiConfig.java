@@ -15,5 +15,7 @@ public enum ApiConfig {
         this.key = key;
     }
 
-    public String get() { return RESOURCE_BUNDLE.getString(key); }
+    public String get() {
+        return RESOURCE_BUNDLE.getString(key);
+    }
 }

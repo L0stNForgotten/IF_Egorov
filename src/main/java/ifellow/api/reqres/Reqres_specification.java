@@ -5,11 +5,10 @@ import io.restassured.specification.RequestSpecification;
 
 public class Reqres_specification {
 
-    public static RequestSpecification baseRequest(String uri, String key, String value) {
+    public static RequestSpecification baseRequest(String uri, String h_key, String h_value) {
         return new RequestSpecBuilder()
                 .setBaseUri(uri)
-                .addHeader(key, value)
+                .addHeader(h_key, h_value)
                 .build();
     }
 }
-

@@ -10,14 +10,15 @@ import org.slf4j.LoggerFactory;
 import java.util.HashMap;
 import java.util.Map;
 
-import static ifellow.api.reqres.Reqres_api.jsonPathGetter;
 import static io.restassured.RestAssured.given;
 
-public class Reqres_api_steps {
+public class Reqres_api_steps extends Reqres_api {
     public static final Logger log = LoggerFactory.getLogger(Reqres_api.class);
+
     public JsonPath getDataJson(String file) {
         return jsonPathGetter(file);
     }
+
 
     public Map<String, Object> refData(JsonPath obj, String name, String job) {
         Map<String, Object> uObj = new HashMap<>(obj.getMap(""));
@@ -28,16 +29,13 @@ public class Reqres_api_steps {
         return uObj;
     }
 
-    public Response postDataInUsers(Map<String, Object> data) {
+    public void postDataInUsers(Map<String, Object> data) {
         Response response = given()
                 .basePath("/users")
                 .contentType(ContentType.JSON)
                 .body(data)
                 .when().post();
-        log.info("Data was posted. Check response.");
         response.then().statusCode(201);
-        log.info("Status code was checked.");
-        return response;
     }
 
 }

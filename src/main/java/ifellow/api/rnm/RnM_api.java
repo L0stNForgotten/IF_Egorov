@@ -1,6 +1,5 @@
 package ifellow.api.rnm;
 
-
 import io.restassured.path.json.JsonPath;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Assertions;
@@ -9,6 +8,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.Map;
+
 import static ifellow.api.rnm.RnM_specification.baseRequest;
 import static io.restassured.RestAssured.given;
 

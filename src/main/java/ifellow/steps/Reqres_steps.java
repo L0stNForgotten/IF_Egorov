@@ -1,25 +1,23 @@
 package ifellow.steps;
 
 import ifellow.api_steps.Reqres_api_steps;
-import io.restassured.path.json.JsonPath;
-import java.util.Map;
-import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.DisplayName;
+import io.cucumber.java.ru.Когда;
+import io.cucumber.java.ru.Тогда;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Step;
-import io.cucumber.java.ru.Когда;
-import io.cucumber.java.ru.Тогда;
+import io.restassured.path.json.JsonPath;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
+import java.util.Map;
 
 @Slf4j
-@DisplayName("Reqres тестирование")
-@Epic("Reqres тестирование отправки-получения запросов")
-@Feature("Проверка корректности работы с json")
+@Epic("Проверка корректности работы reqres")
+@Feature("Тестирование работы с json файлами и отправления запросов")
 public class Reqres_steps {
     private final Reqres_api_steps api_steps = new Reqres_api_steps();
-    private JsonPath jpath = null;
-    private Map<String, Object> upData = null;
+    private JsonPath jpath;
+    private Map<String, Object> upData;
 
     @Step("Получение данных из json файла")
     @Когда("получаем данные из {string}")
@@ -58,5 +56,12 @@ public class Reqres_steps {
                 this.upData,
                 "Ожидалось, что обновлённые данные будут отличаться от исходных"
         );
+    }
+
+    @Step("Отправка POST запроса на сервер")
+    @Тогда("отправляем POST запрос обновлённых данных")
+    public void postUpdates() {
+        log.info("Posting data: {}", this.upData);
+        api_steps.postDataInUsers(this.upData);
     }
 }
